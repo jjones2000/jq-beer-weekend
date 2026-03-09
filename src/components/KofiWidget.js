@@ -17,7 +17,7 @@ import { useEffect, useState } from 'react';const KofiWidget = () => {
   // add another useEffect to draw the widget
   useEffect(() => {
     if (!loaded) return; // return out if not loaded
-    window.kofiWidgetOverlay.draw('josephjones321', {
+    window.kofiWidgetOverlay.draw('josephjones1', {
       'type': 'floating-chat',
       'floating-chat.donateButton.text': 'Support me',
       'floating-chat.donateButton.background-color': '#5bc0de',
