@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from 'react-
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { MapPin, Shirt, Share2, Navigation, Check, X, Beer, Route as RouteIcon, Info, Loader } from 'lucide-react';
+import KofiWidget from './components/KofiWidget';
 
 // Fix for default Leaflet icon paths
 delete L.Icon.Default.prototype._getIconUrl;
@@ -633,10 +634,11 @@ const JQBeerWeekend = () => {
 
         </div>
       </div>
-
+       <KofiWidget />
       {/* Footer */}
       <div className="bg-gray-900 text-gray-300 p-8 mt-12">
         <div className="max-w-7xl mx-auto text-center">
+
           <Beer className="w-8 h-8 mx-auto mb-4 text-amber-600 opacity-50" />
           <p className="font-bold text-white mb-2">JQ Beer Weekend 2026 • 16th–18th April</p>
           <p className="text-sm max-w-md mx-auto mb-4">
