@@ -642,6 +642,9 @@ const JQBeerWeekend = () => {
           <p className="text-sm max-w-md mx-auto mb-4">
             Visit 6 participating venues to collect your FREE exclusive t-shirt! Remember to drink responsibly.
           </p>
+          <p className="text-sm max-w-md mx-auto mb-4">
+            This is a fan project and not affiliated with the Jewellery Quarter Beer Weekend.
+          </p>
           <a
             href="https://www.thejewelleryquarter.org/beer-weekend/"
             target="_blank"
