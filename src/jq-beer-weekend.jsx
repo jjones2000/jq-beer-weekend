@@ -320,7 +320,7 @@ const JQBeerWeekend = () => {
               </div>
             </div>
             <button onClick={() => setShowInfo(false)} className="text-blue-600 hover:text-blue-800">
-              <X className="w-5 h-5" />
+              <X className="w-5 h-5" /> Close help
             </button>
           </div>
         </div>
