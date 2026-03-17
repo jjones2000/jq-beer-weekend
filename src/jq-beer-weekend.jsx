@@ -3,7 +3,6 @@ import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from 'react-
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { MapPin, Shirt, Share2, Navigation, Check, X, Beer, Route as RouteIcon, Info, Loader } from 'lucide-react';
-import KofiWidget from './components/KofiWidget';
 
 // Fix for default Leaflet icon paths
 delete L.Icon.Default.prototype._getIconUrl;
@@ -15,32 +14,32 @@ L.Icon.Default.mergeOptions({
 
 // Venue data
 const VENUES = [
-  { id: 1, name: "Temper & Brown", address: "12-13 Albion Street, B1 3ED", lat: 52.4869, lng: -1.9009, isTshirtVenue: true },
-  { id: 2, name: "The Rolling Mill", address: "25 Hall Street, B18 6BS", lat: 52.4891, lng: -1.9125, isTshirtVenue: true },
-  { id: 3, name: "The Wolf", address: "2-10 Constitution Hill, B19 3LY", lat: 52.4926, lng: -1.9133, isTshirtVenue: true },
-  { id: 4, name: "The Barrel Store", address: "Arch 32, Water Street, B3 1HL", lat: 52.4823, lng: -1.9085, isTshirtVenue: true },
-  { id: 5, name: "Indian Brewery Taproom", address: "1 Mary Ann Street, B3 1RL", lat: 52.4831, lng: -1.9016, isTshirtVenue: true },
-  { id: 6, name: "The Rectory", address: "50-54 St. Paul's Square, B3 1QS", lat: 52.4831, lng: -1.8997, isTshirtVenue: true },
-  { id: 7, name: "1000 Trades JQ", address: "16 Frederick Street, B1 3HE", lat: 52.4867, lng: -1.9028, isTshirtVenue: false },
-  { id: 8, name: "The Button Factory", address: "25 Frederick Street, B1 3HE", lat: 52.4869, lng: -1.9025, isTshirtVenue: false },
-  { id: 9, name: "The Bug and Barrel", address: "60 Vittoria Street, B1 3PB", lat: 52.4855, lng: -1.9035, isTshirtVenue: false, offer: "Beers on tap are 2-4-1. Buy 2 get 1 free on everything else." },
-  { id: 10, name: "JQ Bar & Grill", address: "166 Warstone Lane, B18 6NN", lat: 52.4888, lng: -1.9089, isTshirtVenue: false },
-  { id: 11, name: "Rose Villa Tavern", address: "172 Warstone Lane, B18 6JW", lat: 52.4889, lng: -1.9095, isTshirtVenue: false },
-  { id: 12, name: "The Jewellers Arms", address: "23 Hockley Street, B18 6BW", lat: 52.4882, lng: -1.9077, isTshirtVenue: false },
-  { id: 13, name: "Rock & Roll BrewHouse", address: "19 Hall Street, B18 6BS", lat: 52.4890, lng: -1.9120, isTshirtVenue: false },
-  { id: 14, name: "The Lord Clifden", address: "34 Great Hampton St, B18 6AA", lat: 52.4912, lng: -1.9110, isTshirtVenue: false },
-  { id: 15, name: "The Church", address: "22 Great Hampton Street, B18 6AQ", lat: 52.4910, lng: -1.9107, isTshirtVenue: false, offer: "Enjoy a £5 Scotch Egg when you show your sticker book." },
-  { id: 16, name: "Burning Soul Brewery", address: "Unit 51, Mott Street, B19 3HE", lat: 52.4935, lng: -1.9140, isTshirtVenue: false },
-  { id: 17, name: "Hen & Chickens", address: "27 Constitution Hill, B19 3LE", lat: 52.4924, lng: -1.9128, isTshirtVenue: false },
-  { id: 18, name: "Indian Brewery Snowhill", address: "Arch 15-16, Livery Street, B3 1EU", lat: 52.4815, lng: -1.9037, isTshirtVenue: false },
-  { id: 19, name: "Arch 13 at Connolly's", address: "220 Livery Street, B3 1EU", lat: 52.4818, lng: -1.9040, isTshirtVenue: false },
-  { id: 20, name: "Actress & Bishop", address: "36 Ludgate Hill, B3 1EH", lat: 52.4820, lng: -1.9015, isTshirtVenue: false },
-  { id: 21, name: "Samai Thai", address: "30 Mary Ann Street, B3 1RL", lat: 52.4830, lng: -1.9018, isTshirtVenue: false },
-  { id: 22, name: "Saint Paul's Market", address: "4 Mary Ann Street, B3 1RL", lat: 52.4829, lng: -1.9012, isTshirtVenue: false },
-  { id: 23, name: "Saint Pauls House", address: "15-20 St. Paul's Square, B3 1QU", lat: 52.4832, lng: -1.8995, isTshirtVenue: false },
-  { id: 24, name: "The Jam House", address: "3-5 St. Paul's Square, B3 1QU", lat: 52.4830, lng: -1.8993, isTshirtVenue: false },
-  { id: 25, name: "The Queens Arms", address: "150 Newhall Street, B3 1RY", lat: 52.4810, lng: -1.8980, isTshirtVenue: false },
-  { id: 26, name: "The Shakespeare", address: "31 Summer Row, B3 1JJ", lat: 52.4802, lng: -1.9005, isTshirtVenue: false, offer: "20% off your round when you show your sticker book." },
+  { id: 1,  name: "Temper & Brown",          address: "12-13 Albion Street, B1 3ED",       lat: 52.484657207908626, lng: -1.9144824176362671, isTshirtVenue: true,  desc: "19th century listed pub serving craft beer & Caribbean tapas. Don't miss Food Truck Friday!" },
+  { id: 2,  name: "The Rolling Mill",         address: "25 Hall Street, B18 6BS",           lat: 52.4878077694761, lng: -1.90818921763607, isTshirtVenue: true,  desc: "Restaurant & Sports Bar. Bottomless Breakfast, Lunch & Dinner. Sunday Roasts & much more!" },
+  { id: 3,  name: "The Wolf",                 address: "2-10 Constitution Hill, B19 3LY",   lat: 52.48660683814128, lng: -1.9016252157819284, isTshirtVenue: true,  desc: "Craft beer specialists since 2017 with a huge range of kegs, cans and bottles. Fish & Chips, Sausage & Mash, Pies and pub favourites served until 9pm." },
+  { id: 4,  name: "The Barrel Store",         address: "Arch 32, Water Street, B3 1HL",     lat: 52.48603383460486, lng: -1.9024141017498417, isTshirtVenue: true,  desc: "Home to immaculate vibes — Attic Brew Co.'s independent barrel-aged bar pairs award-winning local craft beer with fully customisable Deathrow Pizza." },
+  { id: 5,  name: "Indian Brewery Taproom",   address: "1 Mary Ann Street, B3 1RL",         lat: 52.48606210684714, lng: -1.9042709022908935, isTshirtVenue: true,  desc: "Enjoy super fresh tasty beer brewed on site along with Indian pizza, pool, interactive darts and live sports on the big screen." },
+  { id: 6,  name: "The Rectory",              address: "50-54 St. Paul's Square, B3 1QS",   lat: 52.484481579786674, lng: -1.9065045581094342, isTshirtVenue: true,  desc: "Vibrant bar overlooking the beautiful St. Paul's Church. Eat, drink or play darts at the 180 club!" },
+  { id: 7,  name: "1000 Trades JQ",           address: "16 Frederick Street, B1 3HE",       lat: 52.48526767451164, lng: -1.911566844618347, isTshirtVenue: false, desc: "Jazz on Friday, dance on Saturday, Roasts on Sunday." },
+  { id: 8,  name: "The Button Factory",       address: "25 Frederick Street, B1 3HE",       lat: 52.48603580636945, lng: -1.9116801022909233, isTshirtVenue: false, desc: "The Jewellery Quarter's best suntrap with the biggest beer garden at The Yard. DJ Friday & Saturday night." },
+  { id: 9,  name: "The Bug and Barrel",       address: "60 Vittoria Street, B1 3PB",        lat: 52.48618360620323, lng: -1.9111559734545807, isTshirtVenue: false, desc: "A vibrant, community-focused pub blending classic charm with great drinks, hearty food, and a welcoming atmosphere.", offer: "Beers on tap: Buy 1 Get 1 Free. Everything else: Buy 2 Get 1 Free." },
+  { id: 10, name: "JQ Bar & Grill",           address: "166 Warstone Lane, B18 6NN",        lat: 52.48731350355514, lng: -1.9133363716003489, isTshirtVenue: false, desc: "A bistro bar serving authentic Indian food and showing live sport." },
+  { id: 11, name: "Rose Villa Tavern",        address: "172 Warstone Lane, B18 6JW",        lat: 52.487317997295484, lng: -1.9122269846202329, isTshirtVenue: false, desc: "Dog friendly — bring your furry friend and enjoy our food with a pint." },
+  { id: 12, name: "The Jewellers Arms",       address: "23 Hockley Street, B18 6BW",        lat: 52.48976222430927, lng: -1.911336773454461, isTshirtVenue: false, desc: "Award winning pub known for the best ales. CAMRA Good Beer Guide Pub in 2019 + 2020." },
+  { id: 13, name: "Rock & Roll BrewHouse",    address: "19 Hall Street, B18 6BS",           lat: 52.488302900804044, lng: -1.9091895176360738, isTshirtVenue: false, desc: "100% Vegan Brewery, Taproom and live music venue. Thurs/Fri: 5pm–9pm; Sat: 3pm–8pm. Live bands at the weekend — free entry." },
+  { id: 14, name: "The Lord Clifden",         address: "34 Great Hampton St, B18 6AA",      lat: 52.49040733032137, lng: -1.9090885887996176, isTshirtVenue: false, desc: "A vibrant, community-focused pub blending classic charm with great drinks, hearty food, and a welcoming atmosphere." },
+  { id: 15, name: "The Church",               address: "22 Great Hampton Street, B18 6AQ",  lat: 52.48962196338874, lng: -1.9081437753085713, isTshirtVenue: false, desc: "Enjoy a pint on our roof terrace.", offer: "£5 Scotch Egg for Beer Weekend visitors who show this sticker book." },
+  { id: 16, name: "Burning Soul Brewery",     address: "Unit 1, 51, Mott Street, B19 3HE",     lat: 52.489063301365114, lng: -1.9055200176359788, isTshirtVenue: false, desc: "Open Thursday and Friday from 4pm and Saturday from 1pm." },
+  { id: 17, name: "Hen & Chickens",           address: "27 Constitution Hill, B19 3LE",     lat: 52.48733366727127, lng: -1.902362888799784, isTshirtVenue: false, desc: "The Cask & Curry spot in the Jewellery Quarter. Sports, curries and beer on tap — need we say more 😉" },
+  { id: 18, name: "Indian Brewery Snowhill",  address: "Arch 15-16, Livery Street, B3 1EU", lat: 52.484888157964974, lng: -1.901698261395586, isTshirtVenue: false, desc: "Home of juicy ales, crispy lagers and the very best modern Indian food around." },
+  { id: 19, name: "Arch 13 at Connolly's",   address: "220 Livery Street, B3 1EU",         lat: 52.48474237719375, lng: -1.9014161734546382, isTshirtVenue: false, desc: "Known for their excellent wine but some great beer on tap too!" },
+  { id: 20, name: "Actress & Bishop",         address: "36 Ludgate Hill, B3 1EH",           lat: 52.48447964351195, lng: -1.9047334734546653, isTshirtVenue: false, desc: "Fri: The Jam'd and Sean Reeves, 8pm. Sat: Debase Invaders indie covers band, 4pm. Free entry." },
+  { id: 21, name: "Samai Thai",               address: "30 Mary Ann Street, B3 1RL",        lat: 52.48556620730715, lng: -1.9045602311272447, isTshirtVenue: false, desc: "Enjoy your beer to a curated Soul & RnB soundtrack with tasty Thai dishes." },
+  { id: 22, name: "Saint Paul's Market",      address: "4 Mary Ann Street, B3 1RL",         lat: 52.485951340723496, lng: -1.9040602311272523, isTshirtVenue: false, desc: "A stunning food hall nestled in the heart of the Jewellery Quarter. 7 indie kitchens, 2 bars, 500 seats!" },
+  { id: 23, name: "Saint Pauls House",        address: "15-20 St. Paul's Square, B3 1QU",   lat: 52.48587204051345, lng: -1.905131259963572, isTshirtVenue: false, desc: "Right on the historic St. Paul's Square." },
+  { id: 24, name: "The Jam House",            address: "3-5 St. Paul's Square, B3 1QU",     lat: 52.48506794263906, lng: -1.9045990292731099, isTshirtVenue: false, desc: "Live Music Venue, Restaurant & Bar. Drinks deals every night. Opens 6pm Thurs/Fri and 5pm Sat — free entry before 8pm." },
+  { id: 25, name: "The Queens Arms",          address: "150 Newhall Street, B3 1RY",        lat: 52.483841082354935, lng: -1.9065967734547768, isTshirtVenue: false, desc: "Thursday taster sessions: 1pm–4pm. DJ on Friday and Saturday." },
+  { id: 26, name: "The Shakespeare",          address: "31 Summer Row, B3 1JJ",             lat: 52.48163811664095, lng: -1.9069980753089444, isTshirtVenue: false, desc: "A classic Birmingham pub on Summer Row.", offer: "20% off your round when you show your sticker book." },
 ];
 
 // Component to fit map bounds to walking route
@@ -321,7 +320,7 @@ const JQBeerWeekend = () => {
               </div>
             </div>
             <button onClick={() => setShowInfo(false)} className="text-blue-600 hover:text-blue-800">
-              <X className="w-5 h-5" /> Close help
+              <X className="w-5 h-5" />
             </button>
           </div>
         </div>
@@ -418,8 +417,10 @@ const JQBeerWeekend = () => {
                               {venue.name}
                               {venue.isTshirtVenue && <Shirt className="w-4 h-4 text-violet-600 flex-shrink-0" />}
                             </h3>
-                            <p className="text-xs text-gray-500 mb-3">{venue.address}</p>
-
+                            <p className="text-xs text-gray-500 mb-2">{venue.address}</p>
+                            {venue.desc && (
+                              <p className="text-xs text-gray-600 mb-3 leading-snug">{venue.desc}</p>
+                            )}
                             {venue.offer && (
                               <p className="text-xs text-blue-600 font-medium mb-3 bg-blue-50 p-2 rounded">
                                 🎁 {venue.offer}
@@ -461,7 +462,7 @@ const JQBeerWeekend = () => {
                 </MapContainer>
 
                 {/* Map Legend */}
-                <div className="absolute bottom-4 z-[1000] pointer-events-none" style={{display:'flex', flexDirection:'row', gap:'6px', alignItems:'center', left:'50%'}}>
+                <div className="absolute bottom-4 z-[1000] pointer-events-none" style={{display:'flex', flexDirection:'row', gap:'6px', alignItems:'center', left:'50%', transform:'translateX(-50%)'}}>
                   {[
                     { color: '#8b5cf6', label: 'T-Shirt' },
                     { color: '#3b82f6', label: 'Venue' },
@@ -634,18 +635,14 @@ const JQBeerWeekend = () => {
 
         </div>
       </div>
-       <KofiWidget />
+
       {/* Footer */}
       <div className="bg-gray-900 text-gray-300 p-8 mt-12">
         <div className="max-w-7xl mx-auto text-center">
-
           <Beer className="w-8 h-8 mx-auto mb-4 text-amber-600 opacity-50" />
           <p className="font-bold text-white mb-2">JQ Beer Weekend 2026 • 16th–18th April</p>
           <p className="text-sm max-w-md mx-auto mb-4">
             Visit 6 participating venues to collect your FREE exclusive t-shirt! Remember to drink responsibly.
-          </p>
-          <p className="text-sm max-w-md mx-auto mb-4">
-            This is a fan project and not affiliated with the Jewellery Quarter Beer Weekend.
           </p>
           <a
             href="https://www.thejewelleryquarter.org/beer-weekend/"
@@ -683,9 +680,11 @@ const VenueCard = ({ venue, isVisited, isSelected, onToggleVisit, onToggleRoute 
             </span>
           )}
         </div>
-        <div className="text-xs text-gray-400 leading-tight">{venue.address}</div>
-
-        {venue.offer && (
+        <div className="text-xs text-gray-400 leading-tight mb-2">{venue.address}</div>
+        {venue.desc && (
+          <div className="text-xs text-gray-600 leading-snug">{venue.desc}</div>
+        )}
+        {venue.offer && !venue.desc && (
           <div className="mt-2 text-[11px] text-blue-700 font-medium bg-blue-50 px-2 py-1.5 rounded-lg border border-blue-100 leading-snug">
             🎁 {venue.offer}
           </div>
